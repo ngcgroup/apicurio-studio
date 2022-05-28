@@ -60,6 +60,16 @@ public class PreviewServlet extends HttpServlet {
         }
     }
 
+    private static String TEMPLATE_SWAGGERUI = null;
+    {
+        URL templateURL = PreviewServlet.class.getResource("preview_swaggerui.template");
+        try {
+            TEMPLATE_SWAGGERUI = IOUtils.toString(templateURL, Charset.forName("UTF-8"));
+        } catch (Exception e) {
+            logger.error("Failed to load previe template resource: preview_swaggerui.template", e);
+        }
+    }
+
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
@@ -77,7 +87,9 @@ public class PreviewServlet extends HttpServlet {
         String content;
         if (rid != null && rid.equals("rapidoc")) {
         	content = TEMPLATE_RAPIDOC.replace("SPEC_URL", specURL);
-        } else {
+        }else if (rid != null && rid.equals("swaggerui")) {
+            content = TEMPLATE_SWAGGERUI.replace("SPEC_URL", specURL);
+        }  else {
         	content = TEMPLATE_REDOC.replace("SPEC_URL", specURL);
         }
         resp.setStatus(200);
