@@ -10,6 +10,9 @@
     <artifactId>apicurio-studio-distro-quickstart</artifactId>
     <packaging>pom</packaging>
     <name>apicurio-studio-distro-quickstart</name>
+    <properties>
+        <docker.buildArg.RELEASE_VERSION>${project.version}</docker.buildArg.RELEASE_VERSION>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -144,6 +147,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+
                 <executions>
                     <execution>
                         <id>quickstart</id>
@@ -182,6 +187,67 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.39.1</version>
+                <configuration>
+                  <images>
+                    <image>
+                      <name>apicurio-studio</name>
+                      <build>
+                        <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                        <env>
+                          <RELEASE_VERSION>${project.version}</RELEASE_VERSION>
+                        </env>
+                        <!-- later 
+                          <from>centos:7</from>
+                          <maintainer>Eric Wittmann "eric.wittmann@redhat.com"</maintainer>
+                          <labels>
+                            <authors>Daniel Cesario "dcesario@redhat.com"</authors>
+                          </labels>
+                          <tags>
+                            <tag>latest</tag>
+                            <tag>${project.version}</tag>
+                          </tags>
+                          <workdir>/opt/apicurio-studio</workdir>
+                          <runCmds>
+                            <run><![CDATA[yum install -y java-1.8.0-openjdk-headless unzip \
+                                && yum clean all]]>
+                            </run>
+                            <run><![CDATA[groupadd -r apicurio -g 1001 \
+                                && useradd -u 1001 -r -g apicurio -d /opt/apicurio-studio/ -s /sbin/nologin -c "Docker image user" apicurio \
+                                && chown -R apicurio:apicurio /opt/apicurio-studio/]]>
+                            </run>
+                            <run><![CDATA[unzip  /opt/apicurio-studio/apicurio-studio-${project.version}-quickstart.zip \
+                                && rm /opt/apicurio-studio/apicurio-studio-${project.version}-quickstart.zip \
+                                && mv /opt/apicurio-studio/apicurio-studio-${project.version} /opt/apicurio-studio/wildfly \
+                                && find /opt/ -name '*' \
+                                && chmod 755 /opt/apicurio-studio/wildfly/bin/standalone.sh]]>
+                            </run>
+                          </runCmds>
+                          <user>1001</user>
+                          <ports>
+                            <port>8080</port>
+                          </ports>
+                          <cmd> 
+                            <exec>
+                              <arg>-c</arg>
+                              <arg>standalone-apicurio.xml</arg>
+                              <arg>-b</arg>
+                              <arg>0.0.0.0</arg>
+                            </exec>
+                          </cmd>
+                          <entryPoint>
+                            <shell>/opt/apicurio-studio/wildfly/bin/standalone.sh</shell>
+                          </entryPoint>
+                        -->
+                        </build>
+                    </image>
+                  </images>
+
+                </configuration>
+              </plugin>
         </plugins>
     </build>
 

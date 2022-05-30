@@ -50,6 +50,28 @@ following commands from the top-level of the repository:
 
 This will start Wildfly on your local machine and you can access the UI at [http://localhost:8080](http://localhost:8080).
 
+## Docker Compose with Heroku to support Microcks and BHN IAM 
+if you need to build for heroku with microcks support and BHN IAM, you need to build thorntail for an upgraded jaxrs dependency.
+```bash
+### in a new folder ###
+git clone https://github.com/ngcgroup/thorntail
+git checkout 2.7.1
+mvn clean install -DskipTests
+### now you can be back on api curio ###
+cd apicurio-studio
+mvn clean package
+cd platforms/thorntail
+for module in api ws ui; do
+  cd $module && mvn docker:build && cd ..;
+done
+## this should build all packages necessary ##
+cd ../../distro/heroku
+
+## start compose ##
+
+```
+
+
 ## Contribute fixes and features
 
 Apicurio Studio is open source, and we welcome anybody who wants to participate and contribute!

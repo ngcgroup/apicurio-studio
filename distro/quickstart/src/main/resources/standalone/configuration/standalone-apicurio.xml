@@ -41,10 +41,14 @@
     </extensions>
     
     <system-properties>
-        <property name="apicurio.kc.auth.rootUrl" value="https://studio-auth.apicur.io/auth"/>
-        <property name="apicurio.kc.auth.realm" value="apicurio-local"/>
+        <property name="apicurio.kc.auth.rootUrl" value="https://bhn-iam.herokuapp.com/auth"/>
+        <property name="apicurio.kc.auth.realm" value="apicurio"/>
         <property name="apicurio.hub.storage.jdbc.type" value="h2"/>
         <property name="apicurio.hub.storage.jdbc.init" value="true"/>
+        <property name="apicurio.hub.microcks.api" value="https://microcks.herokuapp.com"/>
+        <property name="apicurio.hub.microcks.clientId" value="microcks-serviceaccount"/>
+        <property name="apicurio.hub.microcks.clientSecret" value="ab54d329-e435-41ae-a900-ec6b3fe15c54"/>
+        <property name="apicurio-ui.feature.microcks" value="true"/>
     </system-properties>
     
     <management>

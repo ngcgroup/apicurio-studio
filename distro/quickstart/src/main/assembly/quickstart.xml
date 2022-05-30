@@ -3,6 +3,7 @@
   <id>quickstart</id>
   <formats>
     <format>zip</format>
+    <format>dir</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <dependencySets>
@@ -57,6 +58,9 @@
     <fileSet>
       <directory>src/main/resources/standalone/configuration</directory>
       <outputDirectory>apicurio-studio-${project.version}/standalone/configuration</outputDirectory>
+       <includes>
+        <include>*</include>
+      </includes>
       <filtered>false</filtered>
     </fileSet>
     <fileSet>
