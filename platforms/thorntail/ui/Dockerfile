@@ -1,23 +1,16 @@
-FROM centos:7
-LABEL authors="Eric Wittmann <eric.wittmann@redhat.com>"
+FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine
+LABEL authors="Prabhu Inbarajan <prabhu.inbarajan@bhnetwork.com>"
 ENV RELEASE_PATH target/apicurio-studio-ui-thorntail.jar
-RUN yum install -y \
-    java-11-openjdk-headless \
-  && yum clean all
-
 WORKDIR /opt/apicurio
 
-ADD ${RELEASE_PATH} /opt/apicurio
-ADD entrypoint.sh /opt/apicurio
+RUN addgroup -S apicurio -g 1001 && adduser -u 1001 -S -G apicurio -s /sbin/nologin apicurio && chown -R apicurio:apicurio /opt/apicurio/
 
-RUN groupadd -r apicurio -g 1001 \
-    && useradd -u 1001 -r -g apicurio -d /opt/apicurio/ -s /sbin/nologin -c "Docker image user" apicurio \
-    && chown -R apicurio:apicurio /opt/apicurio/ \
-    && chmod 554 /opt/apicurio/entrypoint.sh \
+ADD --chown=apicurio:apicurio  ${RELEASE_PATH} entrypoint.sh /opt/apicurio/
+
+RUN chmod 554 /opt/apicurio/entrypoint.sh \
     && chgrp -R 0 /opt/apicurio && chmod -R g=u /opt/apicurio
 
 USER 1001
-
 
 EXPOSE 8080
 
