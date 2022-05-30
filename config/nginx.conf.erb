@@ -24,7 +24,7 @@ http {
 		location / {
 		    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 		   	proxy_set_header X-Forwarded-Proto https;
-            proxy_pass  <%= ENV["UPSTREAM_SERVER"] %>;
+            proxy_pass  <%= ENV["APICURIO_UI_URL"] %>;
             proxy_set_header Host $http_host;
 		}
 	}

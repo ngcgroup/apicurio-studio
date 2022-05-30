@@ -24,6 +24,12 @@ Supported databases:
 - mysql
 - postgresql
 
+### Heroku
+```bash
+for entry in $(grep -rivh -e "^#" .env.heroku); do heroku config:set $entry --app apistudio; done
+heroku dh:compose up --app apistudio
+```
+
 ### Docker based setup
 
 The easiest way is to open a terminal or PowerShell, and navigate into distro/docker-compose folder. In this folder enter the command below. On Windows please make sure, that your drives shares are enabled!
