@@ -57,10 +57,13 @@
         <maven.compiler.source>11</maven.compiler.source>
 
         <!-- Wildfly Version -->
+        <!--
+        <version.wildfly>17.0.1.Final</version.wildfly>
+        -->
         <version.wildfly>17.0.1.Final</version.wildfly>
 
         <!-- Thorntail Version -->
-        <version.io.thorntail>2.7.0.Final</version.io.thorntail>
+        <version.io.thorntail>2.7.1.Final-SNAPSHOT</version.io.thorntail>
 
         <!-- Quarkus Version -->
         <version.io.quarkus>2.7.0.Final</version.io.quarkus>
@@ -99,6 +102,10 @@
 
         <!-- Dependency Versions -->
         <version.com.fasterxml.jackson>2.13.3</version.com.fasterxml.jackson>
+        <version.com.fasterxml.datatype>2.13.3</version.com.fasterxml.datatype>
+        <version.com.fasterxml.jackson.jaxrs>2.13.3</version.com.fasterxml.jackson.jaxrs>
+        <version.org.jboss.resteasy.resteasy-jackson2-provider>6.0.1.Final</version.org.jboss.resteasy.resteasy-jackson2-provider>
+        <version.org.jboss.resteasy.resteasy-jackson-provider>3.15.3.Final</version.org.jboss.resteasy.resteasy-jackson-provider>
         <version.com.google.inject>4.1.0</version.com.google.inject>
         <version.com.graphql-java>17.3</version.com.graphql-java>
         <version.com.h2database>1.4.200</version.com.h2database>
@@ -137,6 +144,8 @@
         <version.org.slf4j>1.7.36</version.org.slf4j>
         <version.scala>2.13.8</version.scala>
         <version.infinispan>13.0.10.Final</version.infinispan>
+        <docker.image.prefix>apicurio</docker.image.prefix>
+
     </properties>
 
     <dependencyManagement>
@@ -242,6 +251,36 @@
                 <artifactId>jackson-dataformat-yaml</artifactId>
                 <version>${version.com.fasterxml.jackson}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${version.com.fasterxml.datatype}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jdk8</artifactId>
+                <version>${version.com.fasterxml.datatype}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-json-provider</artifactId>
+                <version>${version.com.fasterxml.jackson.jaxrs}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson2-provider</artifactId>
+                <version>${version.org.jboss.resteasy.resteasy-jackson2-provider}</version>
+            </dependency>
+             <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxb-provider</artifactId>
+                <version>${version.org.jboss.resteasy.resteasy-jackson2-provider}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson-provider</artifactId>
+                <version>${version.org.jboss.resteasy.resteasy-jackson-provider}</version>
+            </dependency>           
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>

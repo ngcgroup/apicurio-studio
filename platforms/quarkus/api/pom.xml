@@ -9,6 +9,9 @@
   </parent>
   <artifactId>apicurio-studio-platforms-quarkus-api</artifactId>
   <name>apicurio-studio-platforms-quarkus-api</name>
+  <properties>
+        <docker.buildArg.RELEASE_VERSION>${project.version}</docker.buildArg.RELEASE_VERSION>
+  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -156,6 +159,26 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.39.1</version>
+        <configuration>
+          <images>
+            <image>
+              <name>apicurio/apicurio-studio-api</name>
+              <build>
+                <tags>
+                    <tag>latest</tag>
+                </tags>
+                <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+              </build>
+
+            </image>
+          </images>
+
+        </configuration>
       </plugin>
     </plugins>
   </build>
