@@ -8,6 +8,7 @@ services:
       - '8092:8080'
     environment:
       JAVA_TOOL_OPTIONS: '-Djava.net.preferIPv4Stack=true'
+      DATABASE_URL: ${DATABASE_URL}
       APICURIO_DB_INITIALIZE: ${WS_APICURIO_DB_INITIALIZE}
       APICURIO_SHARE_FOR_EVERYONE: ${APICURIO_SHARE_FOR_EVERYONE}
 
@@ -19,7 +20,7 @@ services:
       - '8091:8080'
     environment:
       JAVA_TOOL_OPTIONS: '-Djava.net.preferIPv4Stack=true'
-
+      DATABASE_URL: ${DATABASE_URL}
       APICURIO_KC_AUTH_URL: ${APICURIO_KC_AUTH_URL}
       APICURIO_KC_CLIENT_ID: ${API_APICURIO_KC_CLIENT_ID}
       APICURIO_KC_REALM: ${APICURIO_KC_REALM}
@@ -43,7 +44,7 @@ services:
       - '8443:8443'
     environment:
       JAVA_TOOL_OPTIONS: '-Djava.net.preferIPv4Stack=true'
-
+      DATABASE_URL: ${DATABASE_URL}
       APICURIO_KC_CLIENT_ID: ${APICURIO_UI_KC_CLIENT_ID}
       APICURIO_KC_AUTH_URL: ${APICURIO_KC_AUTH_URL}
       APICURIO_KC_REALM: ${APICURIO_KC_REALM}
