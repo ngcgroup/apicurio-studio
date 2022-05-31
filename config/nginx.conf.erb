@@ -2,7 +2,6 @@ worker_processes <%= ENV['NGINX_WORKERS'] || 2 %>;
 error_log /dev/stdout info;
 
 daemon off;
-set_by_lua $apicurio_ui_url 'return os.getenv("APICURIO_UI_URL")';
 
 events {
 	use epoll;
