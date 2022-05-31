@@ -4,7 +4,7 @@ ENV RELEASE_PATH target/apicurio-studio-api-thorntail.jar
 ARG RELEASE_VERSION=""
 WORKDIR /opt/apicurio
 
-RUN addgroup -S apicurio -g 1001 && adduser -u 1001 -S -G apicurio -s /sbin/nologin apicurio && chown -R apicurio:apicurio /opt/apicurio/
+RUN apk add --no-cache bash && addgroup -S apicurio -g 1001 && adduser -u 1001 -S -G apicurio -s /sbin/nologin apicurio && chown -R apicurio:apicurio /opt/apicurio/
 
 ADD --chown=apicurio:apicurio  ${RELEASE_PATH} entrypoint.sh /opt/apicurio/
 

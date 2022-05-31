@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$DATABASE_URL" != "" ]; then
     echo "Found database configuration in DATABASE_URL=$DATABASE_URL"

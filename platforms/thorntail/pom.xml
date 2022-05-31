@@ -31,7 +31,8 @@
                 <configuration>
                   <images>
                     <image>
-                      <name>apicurio/${project.build.finalName}</name>
+                      <name>registry.heroku.com/apistudio/${project.build.finalName}</name> 
+                      <alias>apicurio/${project.build.finalName}</alias>
                       <build>
                         <dockerFile>${project.basedir}/Dockerfile</dockerFile>                        
                         </build>
