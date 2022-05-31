@@ -40,7 +40,7 @@ services:
     depends_on: [apicurio-studio-api, apicurio-studio-ws]
     ports:
       - '8080:8080'
-      - '8443:8080'
+      - '8443:8443'
     environment:
       JAVA_TOOL_OPTIONS: '-Djava.net.preferIPv4Stack=true'
 
