@@ -10,7 +10,7 @@ events {
 }
 
 http {
-	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id upstream_server=$upstream_addr apicurio_ui_url=$apicurio_ui_url';
+	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id upstream_server=$upstream_addr';
 	access_log logs/nginx/access.log l2met;
 	error_log logs/nginx/error.log;
 
