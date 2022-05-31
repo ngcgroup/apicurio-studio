@@ -63,7 +63,10 @@ mvn clean package
 cd platforms/thorntail
 for module in api ws ui; do
   cd $module && mvn docker:build && cd ..;
+  docker push registry.heroku.com/apistudio/apicurio-studio-$module
+  heroku container:release apicurio-studio-$module -a apistudio
 done
+
 ## this should build all packages necessary ##
 cd ../../distro/heroku
 
