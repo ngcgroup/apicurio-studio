@@ -2,6 +2,7 @@ worker_processes <%= ENV['NGINX_WORKERS'] || 2 %>;
 error_log /dev/stdout info;
 
 daemon off;
+set_by_lua $apicurio_ui_url 'return os.getenv("APICURIO_UI_URL")';
 
 events {
 	use epoll;
@@ -10,7 +11,7 @@ events {
 }
 
 http {
-	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id upstream_server=$upstream_addr';
+	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id upstream_server=$upstream_addr apicurio_ui_url=$apicurio_ui_url';
 	access_log logs/nginx/access.log l2met;
 	error_log logs/nginx/error.log;
 
